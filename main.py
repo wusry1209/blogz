@@ -1,4 +1,4 @@
-from flask import Flask, request, redirect, render_template, session, flash
+from flask import Flask, request, redirect, render_template, session, flash, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -28,13 +28,14 @@ class Blog(db.Model):
 @app.route('/', methods=['GET'])
 def index():
 
-    return render_template('blogpost.html',title="Build a Blog")
+    blogs = Blog.query.all()
+    return render_template('blog.html',title="Build a Blog", blogs=blogs)
 
 @app.route("/blog", methods=["GET"])   
 def blog():
 
-    blog = Blog.query.all()
-    return render_template('blog.html', title="Build A Blog", blog=blog)
+    blogs = Blog.query.all()
+    return render_template('blog.html', title="Build A Blog", blogs=blogs)
 
 @app.route("/blogpost", methods=["GET"])
 def blogpost():
