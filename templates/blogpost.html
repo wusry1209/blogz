@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-
-<h1> Individual Blog Entry </h1>
+<div class="container">
+<h2> Individual Blog Entry </h2>
 
 <form action="/blogpost", method="GET">
 <div>
-    <h2>{{ blog.title }} </a> </h2> 
+    <h3>{{ blog.title }} </a> </h3> 
    <p>{{ blog.body }}</p>
      
 
     
 </div>
 </form>
+</div>
 
 {% endblock%}

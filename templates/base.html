@@ -2,24 +2,21 @@
 <html>
     <head>
         <title> Build a Blog </title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <a href='/blog'> Home </a> <br>
         <a href='/newpost'> Add a Post </a> <br>    
-
-        <style type="text/css">
-        h1 {
-            text-align: center
-            }
-        </style>
     </head>
     <body>
-        <h1>
-           
-        </h1>
-
+        <h1 class="container">
+        
         {% block content %}
 
         
         {% endblock %}
 
+           
+        </h1>
+
+    
     </body>
 </html>
