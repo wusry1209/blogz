@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Build a Blog </title>
+        <title> {{title}} </title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-        <a href='/blog'> Home </a> <br>
-        <a href='/newpost'> Add a Post </a> <br>    
-    </head>
-    <body>
-        <h1 class="container">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/blog">Blog Page</a></li>
+                <li><a href="/newpost">Add a New Post</a></li>
+                <li><a href="/signup">signup</a></li>
+            </ul>
+            <ul id="user-account">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>   
+        </nav>
         
         {% block content %}
 
