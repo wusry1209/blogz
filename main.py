@@ -18,15 +18,15 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        if user and user.password == password:
+        if user and check_pw_hash(password, user.pw_hash):
             session['username'] = username
             flash('Logged in')
             return redirect('/newpost')
         elif user and user.password != password:
-            flash('Invalid password', 'error')
+            flash('Incorrect Password', 'error')
             return redirect('/login')
         elif not user:
-            flash('Username does not exist', 'error')
+            flash('This username does not exist', 'error')
             return redirect('/login')
     else:
         return render_template('login.html')   
@@ -41,8 +41,8 @@ def signup():
         if not username or not password or not verify:
             flash('One or more fields are empty', 'error')
             return redirect('/signup')
-        elif len(password) < 3 or len(username) < 3:
-            flash('Usernames and passwords must at least 3 characters long', 'error')
+        elif len(password) < 6 or len(username) < 6:
+            flash('Usernames and passwords must at least 6 characters long', 'error')
             return redirect('/signup')
         elif existing_user:
             flash('Username already exists', 'error')
